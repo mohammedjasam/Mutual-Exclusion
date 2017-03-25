@@ -3,6 +3,7 @@ import java.applet.Applet;
 import java.awt.Button;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Label;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
@@ -72,7 +73,7 @@ public class Part2Final extends Applet implements Runnable,ActionListener{
 	      }
 	   }
 	   
-	int queue[]=new int [5];
+	int queue[]=new int [5];					// What is this????
 	int durationint=500;	//Duration of animation
 	   int cx1=250,cy1=250;   //Circle 1 params
 	   int cx2=250,cy2=350;   //Circle 2 params
@@ -122,7 +123,9 @@ public class Part2Final extends Applet implements Runnable,ActionListener{
 		}
 	}
    public void paint(Graphics g){
-	  
+//	  Graphics2D g =(Graphics2D)g3d;
+//	  g.scale(1.1, 1.1);
+//	  g.translate(750, 350);
 	  // int channelBusy=0;	//Channel busy intiable
 //Drawing circles 1 through 4
 	   g.setColor(Color.RED);
@@ -316,8 +319,6 @@ public class Part2Final extends Applet implements Runnable,ActionListener{
 	   }
 		  
    }
-   
-   
    public void update2()
    {
 	   int pixelMovement=pixelMovement2;
@@ -812,6 +813,7 @@ public class Part2Final extends Applet implements Runnable,ActionListener{
 	   }
 		  
    }
+   
    
    public  void enqueue(int personNumber)
    {
