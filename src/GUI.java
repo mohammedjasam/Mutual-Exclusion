@@ -12,29 +12,73 @@ import javax.swing.JComponent;
 
 public class GUI {
 	
-	public class MyGraphics extends JComponent {
+	public class DrawingPanel extends JPanel {
 		@Override
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
+			
+			//Drawing circles 1 through 4
+			g.setColor(Color.PINK);
+			drawCircle(g,cx1,cy1,r);
+			g.setColor(Color.BLACK);
+			drawCircle(g,cx2,cy2,r);
+			g.setColor(Color.MAGENTA);
+			drawCircle(g,cx3,cy3,r);
+			g.setColor(Color.ORANGE);
+			drawCircle(g,cx4,cy4,r);
+			
+			//Drawing lines 1 through 7  
+			g.setColor(Color.BLACK);
+			g.drawLine(line1x1,line1y1,line1x2,line1y2);
+			g.drawLine(line2x1,line2y1,line2x2,line2y2);
+			g.drawLine(line3x1,line3y1,line3x2,line3y2);
+			g.drawLine(line4x1,line4y1,line4x2,line4y2);
+			g.drawLine(line5x1,line5y1,line5x2,line5y2);
+			g.drawLine(line6x1,line6y1,line6x2,line6y2);
+			g.drawLine(line7x1,line7y1,line7x2,line7y2);
 		}
+		
+		public void drawCircle(Graphics g, int x, int y, int r) {
+		   x = x-(r/2);
+		   y = y-(r/2);
+		   g.fillOval(x,y,r,r);
+	    }
 	}
-	
-	MyGraphics g = new MyGraphics();
 	
 	int durationint=500;	//Duration of animation
 	int r=20;				//Radius of all the circles
 	int channelBusy=0;
 
-	int[] pixelMovement = new int[4];
-	int queue[]=new int [5];
-	int[] cx = new int[4];
-	int[] cy = new int[4];
-	int[] flag = new int[4];
-	int[] circleOnBridge = new int[4];
+//	int[] pixelMovement = new int[4];
+//	int queue[]=new int [5];
+//	int[] cx = new int[4];
+//	int[] cy = new int[4];
+//	int[] flag = new int[4];
+//	int[] circleOnBridge = new int[4];
 	
 	
-	int line1x1=250,line1y1=150,line1x2=250,line1y2=450;					//Line 1
-	int line2x1=750,line2y1=line1y1,line2x2=750,line2y2=line1y2;			//Line 2
+	int pixelMovement1 = 5;
+	int pixelMovement2 = 7;
+	int pixelMovement3 = 9;
+	int pixelMovement4 = 10;
+	
+	int cx1=250,cy1=250;   	//Circle 1 params
+	int cx2=250,cy2=350;   	//Circle 2 params
+	int cx3=750,cy3=250;	//Circle 3 params 
+	int cx4=750,cy4=350;	//Circle 4 params
+	
+	int flag1=1;
+	int flag2=1;
+	int flag3=5;
+	int flag4=5;
+	
+	int circle1OnBridge=0;
+	int circle2OnBridge=0;
+	int circle3OnBridge=0;
+	int circle4OnBridge=0;
+	
+	int line1x1=cx1,line1y1=150,line1x2=cx1,line1y2=450;					//Line 1
+	int line2x1=cx3,line2y1=line1y1,line2x2=cx3,line2y2=line1y2;			//Line 2
 	int line3x1=line1x1,line3y1=line1y1,line3x2=400,line3y2=300;			//Line 3
 	int line4x1=line1x2,line4y1=line1y2,line4x2=line3x2,line4y2=line3y2;	//Line 4
 	int line5x1=line4x2,line5y1=line4y2,line5x2=line4x2+200,line5y2=line4y2;//Line 5
@@ -43,28 +87,30 @@ public class GUI {
 	
 	public void init() {
 
-		pixelMovement[0] = 5;
-		pixelMovement[1] = 7;
-		pixelMovement[2] = 9;
-		pixelMovement[3] = 11;
+//		pixelMovement[0] = 5;
+//		pixelMovement[1] = 7;
+//		pixelMovement[2] = 9;
+//		pixelMovement[3] = 11;
+//		
+//		cx[0]=250;cy[0]=250;   	//Circle 1 params
+//		cx[1]=250;cy[1]=350;   	//Circle 2 params
+//		cx[2]=750;cy[2]=250;	//Circle 3 params 
+//		cx[3]=750;cy[3]=350;	//Circle 4 params
+//		
+//		flag[0]=1;
+//		flag[1]=1;
+//		flag[2]=5;
+//		flag[3]=5;
+//		
+//		circleOnBridge[0]=0;
+//		circleOnBridge[1]=0;
+//		circleOnBridge[2]=0;
+//		circleOnBridge[3]=0;
 		
-		cx[0]=250;cy[0]=250;   	//Circle 1 params
-		cx[1]=250;cy[1]=350;   	//Circle 2 params
-		cx[2]=750;cy[2]=250;	//Circle 3 params 
-		cx[3]=750;cy[3]=350;	//Circle 4 params
-		
-		flag[0]=1;
-		flag[1]=1;
-		flag[2]=5;
-		flag[3]=5;
-		
-		circleOnBridge[0]=0;
-		circleOnBridge[1]=0;
-		circleOnBridge[2]=0;
-		circleOnBridge[3]=0;
+
 	}
 	
-	private JFrame frame;
+	JFrame frame;
 
 	/**
 	 * Launch the application.
@@ -86,23 +132,25 @@ public class GUI {
 	 * Create the application.
 	 */
 	public GUI() {
+		//init();
 		initialize();
-		init();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	DrawingPanel drawingPanel;
+	
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(0, 0, 1366, 718);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JPanel Drawing = new JPanel();
-		Drawing.setBackground(Color.WHITE);
-		Drawing.setBounds(0, 0, 1342, 464);
-		frame.getContentPane().add(Drawing);
+		drawingPanel = new DrawingPanel();
+		drawingPanel.setBackground(Color.WHITE);
+		drawingPanel.setBounds(0, 0, 1342, 464);
+		frame.getContentPane().add(drawingPanel);
 		
 		JPanel Control = new JPanel();
 		Control.setBounds(0, 465, 1342, 189);
@@ -170,8 +218,8 @@ public class GUI {
 		Control.add(Black_slider);
 		Control.add(ChangeMode_btn);
 		
-		Drawing.add(g);
-		Primary p = new Primary(this);
-		p.start();
+//		Primary p = new Primary(this);
+//		p.start();
+		Secondary s = new Secondary(this);
 	}
 }

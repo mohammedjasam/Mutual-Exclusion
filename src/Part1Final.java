@@ -1,49 +1,161 @@
+
+import java.applet.Applet;
+import java.awt.Button;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Label;
+import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JLabel;
+
+public class Part1Final extends Applet implements Runnable,ActionListener{
+	TextField input1,input2,input3,input4;
+	   Label label1,label2,label3,label4;
+	   Button b1;
+	   JLabel lbl;
+	   int num, sum = 0;
+	   public void init(){
+	      label1 = new Label("Speed 1 : ");
+	      add(label1);
+	      //label1.setBackground(Color.yellow);
+	      label1.setForeground(Color.red);
+	      input1 = new TextField(5);
+	      add(input1);
+	      label2 = new Label("Speed 2 : ");
+	      add(label2);
+	      //label1.setBackground(Color.yellow);
+	      label2.setForeground(Color.green);
+	      input2 = new TextField(5);
+	      add(input2);
+	      label3 = new Label("Speed 3 : ");
+	      add(label3);
+	      //label1.setBackground(Color.yellow);
+	      label3.setForeground(Color.blue);
+	      input3 = new TextField(5);
+	      add(input3);
+	      label4 = new Label("Speed 4 : ");
+	      add(label4);
+	      //label1.setBackground(Color.yellow);
+	      label4.setForeground(Color.yellow);
+	      input4 = new TextField(5);
+	      add(input4);
+
+	      b1 = new Button("Reset");
+	      add(b1);
+	      b1.addActionListener( this);
+	      lbl = new JLabel("Swing Applet Example. ");
+	      add(lbl);
 
 
-public class Secondary implements Runnable {
+	   }
+	   public void actionPerformed(ActionEvent ae){
+	      try{
+	         /*num = Integer.parseInt(input.getText());
+	         sum = sum+num;
+	         input.setText("");
+	         output.setText(Integer.toString(sum));
+	         lbl.setForeground(Color.blue);
+	         lbl.setText("Output of the second Text Box : "
+	         + output.getText());
+	         */
+	pixelMovement1 = Integer.parseInt(input1.getText());
+	pixelMovement2 = Integer.parseInt(input2.getText());
+	pixelMovement3 = Integer.parseInt(input3.getText());
+	pixelMovement4 = Integer.parseInt(input4.getText());
+	      }
+	      catch(NumberFormatException e){
+	         /*lbl.setForeground(Color.red);
+	         lbl.setText("Invalid Entry!");
+	         */
+	      }
+	   }
 
-	GUI gui;
-	Thread t;
-	int[] queue;
+		int queue[]=new int [5];
+		int durationint=500;	//Duration of animation
+		int cx1=250,cy1=250;   //Circle 1 params
+		int cx2=250,cy2=350;   //Circle 2 params
+		int cx3=750,cy3=250;	       //Circle 3 params
+		int cx4=750,cy4=350;	       //Circle 4 params
+		int r=20;		//Radius of all the circles
+		int flag1=1,flag2=1,flag3=5,flag4=5;
+		int channelBusy=0;
+		int circle1OnBridge=0,circle2OnBridge=0,circle3OnBridge=0,circle4OnBridge=0;
+		//int pixelMovement1=4,pixelMovement2=6,pixelMovement3=5,pixelMovement4=3;
+		int pixelMovement1=5,pixelMovement2=7,pixelMovement3=9,pixelMovement4=10;
+		int line1x1=cx1,line1y1=150,line1x2=cx1,line1y2=450;	//Line 1
 
-	public Secondary(GUI gui) {
-		this.gui = gui;
-		queue=new int[5];
-		t=new Thread(this);
+		int line2x1=cx3,line2y1=line1y1,line2x2=cx3,line2y2=line1y2;	//Line 2
+
+		int line3x1=line1x1,line3y1=line1y1,line3x2=400,line3y2=300;	//Line 3
+
+		int line4x1=line1x2,line4y1=line1y2,line4x2=line3x2,line4y2=line3y2;	//Line 4
+
+
+		int line5x1=line4x2,line5y1=line4y2,line5x2=line4x2+200,line5y2=line4y2;	//Line 5
+
+		int line6x1=line5x2,line6y1=line5y2,line6x2=line2x1,line6y2=line2y1;		//Line 6
+
+		int line7x1=line6x1,line7y1=line6y1,line7x2=line2x2,line7y2=line2y2;		//Line 7
+	Thread t=new Thread(this);
+	public void start()
+	{
 		t.start();
 	}
-
 	public void run()
 	{
 		while(true)
 		{
-			update1();
-			update2();
-			update3();
-			update4();
-			try
-			{
-				Thread.sleep(50);
-				gui.drawingPanel.repaint();
-			}
-			catch(Exception e)
-			{
-				System.out.println(e);
-			}
+		update1();
+		update2();
+		update3();
+		update4();
+		try{
+		Thread.sleep(50);
+		repaint();
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
 		}
 	}
+   public void paint(Graphics g){
 
+	  // int channelBusy=0;	//Channel busy intiable
+//Drawing circles 1 through 4
+	   g.setColor(Color.RED);
+      drawCircle(g,cx1,cy1,r);
+      g.setColor(Color.GREEN);
+      drawCircle(g,cx2,cy2,r);
+      g.setColor(Color.BLUE);
+      drawCircle(g,cx3,cy3,r);
+      g.setColor(Color.YELLOW);
+      drawCircle(g,cx4,cy4,r);
+//Drawing lines 1 through 7
+      g.setColor(Color.BLACK);
+      g.drawLine(line1x1,line1y1,line1x2,line1y2);
+      g.drawLine(line2x1,line2y1,line2x2,line2y2);
+      g.drawLine(line3x1,line3y1,line3x2,line3y2);
+      g.drawLine(line4x1,line4y1,line4x2,line4y2);
+      g.drawLine(line5x1,line5y1,line5x2,line5y2);
+      g.drawLine(line6x1,line6y1,line6x2,line6y2);
+      g.drawLine(line7x1,line7y1,line7x2,line7y2);
+//      JTextField textField = new JTextField(20);
+      //JOptionPane.showInputDialog ("Input Text Here");
+      TextField nameField = new TextField("A TextField",100);
+   }
+   public void drawCircle(Graphics g, int x, int y, int r) {
+	   x = x-(r/2);
+	   y = y-(r/2);
+	   g.fillOval(x,y,r,r);
+	 }
    public void update1()
    {
-		 int flag1=gui.flag1;
-		 int cx1 = gui.cx1;
-		 int cy1 = gui.cy1;
 
-		 int circle1OnBridge = gui.circle1OnBridge;
-		 int channelBusy = gui.channelBusy;
-		 int pixelMovement=gui.pixelMovement1;
+	   //System.out.println("ChannelBusy and Circle1OnBridge for ball 1:"+channelBusy+"  "+circle1OnBridge);
+	   int pixelMovement=pixelMovement1;
 	 ///Transition on line 1
 	   if((flag1==1)&&(cx1==250)&& (cy1>=150 && cy1<=450))
 	   {
@@ -71,7 +183,8 @@ public class Secondary implements Runnable {
 		   {
 			   flag1+=1;
 			   if(onQueue(1)==0)
-				    enqueue(1);
+				   System.out.println("Put inside the queue!!!!!!");
+			   enqueue(1);
 		   }
 	   }
 
@@ -80,11 +193,22 @@ public class Secondary implements Runnable {
 	   {
 		   if(circle1OnBridge==0)
 		   {
-
-		   if(allowedOnBridge(1)==1)
+		   if(channelBusy==0)
 		   {
-			   circle1OnBridge=1;
+			   System.out.println("Point 1 and queue[0]:"+queue[0]);
+
+			   if(queue[0]!=1)
+			   {
+				   System.out.println("Point 2");
+				   return;
+			   }
+			   else
+			   {
+				   System.out.println("Point 3");
+				   circle1OnBridge=1;
 				   channelBusy=1;
+
+			   }
 		   }
 		   else
 		   {
@@ -94,7 +218,7 @@ public class Secondary implements Runnable {
 
 
 		  // System.out.println("Queue front:"+queue[0]+"  channelBusy:"+channelBusy+"  circle1OnBridge:"+circle1OnBridge);
-
+		   
 		   cx1+=pixelMovement;
 		   if(cx1>600)
 		   {
@@ -106,7 +230,7 @@ public class Secondary implements Runnable {
 			   flag1+=1;
 			   channelBusy=0;
 			   circle1OnBridge=0;
-			  // if(queue[0]==1)
+			   if(queue[0]==1)
 			   dequeue();
 
 		   }
@@ -160,17 +284,18 @@ public class Secondary implements Runnable {
 	   {
 		   if(circle1OnBridge==0)
 		   {
-			   if(allowedOnBridge(1)==1)
-			   {
-				   circle1OnBridge=1;
-					   channelBusy=1;
-			   }
+		   if(channelBusy==0 )
+		   {
+			   if(queue[0]!=1)
+			   return;
+		   }
 		   else
 		   {
 			   return;
 		   }
 		   }
-
+		   channelBusy=1;
+		   circle1OnBridge=1;
 		   cx1-=pixelMovement;
 		   if(cx1<400)
 		   {
@@ -182,7 +307,7 @@ public class Secondary implements Runnable {
 			   flag1+=1;
 			   channelBusy=0;
 			   circle1OnBridge=0;
-			   //if(queue[0]==1)
+			   if(queue[0]==1)
 			   dequeue();
 
 
@@ -202,28 +327,13 @@ public class Secondary implements Runnable {
 			   flag1=1;
 
 	   }
-		 gui.flag1 = flag1;
-     gui.cx1= cx1 ;
-     gui.cy1=cy1  ;
 
-    gui.circle1OnBridge= circle1OnBridge;
-    gui.channelBusy= channelBusy;
-
-     gui.pixelMovement1=pixelMovement;
    }
 
 
    public void update2()
    {
-		 int flag2=gui.flag2;
-    int cx2 = gui.cx2;
-    int cy2 = gui.cy2;
-
-    int circle2OnBridge = gui.circle2OnBridge;
-    int channelBusy = gui.channelBusy;
-
-     int pixelMovement=gui.pixelMovement2;
-
+	   int pixelMovement=pixelMovement2;
 	 ///Transition on line 1
 	   if((flag2==1)&&(cx2==250)&& (cy2>=150 && cy2<=450))
 	   {
@@ -262,25 +372,20 @@ public class Secondary implements Runnable {
 	   //Transition on line 3
 	   if((flag2==3)&&(cx2>=400&&cx2<=600)&&(cy2==300))
 	   {
-		   /*System.out.println("Queue when 2 at the bridge point 1:");
-		   for(int i=0;i<4;i++)
-			   System.out.print("	"+queue[i]);
-		   */
-//		  s System.out.println("flag1:"+flag1+"flag2:"+flag2+"flag3:"+flag3+"flag4:"+flag4);
-		   System.out.println();
 		   if(circle2OnBridge==0)
 		   {
-			   if(allowedOnBridge(2)==1)
-			   {
-				   circle2OnBridge=1;
-					   channelBusy=1;
-			   }
+		   if(channelBusy==0 )
+		   {
+			   if(queue[0]!=2)
+			   return;
+		   }
 		   else
 		   {
 			   return;
 		   }
 		   }
-
+		   circle2OnBridge=1;
+		   channelBusy=1;
 		   cx2+=pixelMovement;
 		   if(cx2>600)
 		   {
@@ -292,10 +397,9 @@ public class Secondary implements Runnable {
 			   flag2+=1;
 			   channelBusy=0;
 			   circle2OnBridge=0;
-			   //if(queue[0]==2)
+			   if(queue[0]==2)
 			   dequeue();
-
-
+			   //if(queue[0]==2)
 
 		   }
 	   }
@@ -348,17 +452,18 @@ public class Secondary implements Runnable {
 	   {
 		   if(circle2OnBridge==0)
 		   {
-			   if(allowedOnBridge(2)==1)
-			   {
-				   circle2OnBridge=1;
-					   channelBusy=1;
-			   }
+		   if(channelBusy==0 )
+		   {
+			   if(queue[0]!=2)
+			   return;
+		   }
 		   else
 		   {
 			   return;
 		   }
 		   }
-
+		   channelBusy=1;
+		   circle2OnBridge=1;
 		   cx2-=pixelMovement;
 		   if(cx2<400)
 			   cx2=400;
@@ -367,7 +472,7 @@ public class Secondary implements Runnable {
 			   flag2+=1;
 			   channelBusy=0;
 			   circle2OnBridge=0;
-			   //if(queue[0]==2)
+			   if(queue[0]==2)
 			   dequeue();
 			   //if(queue[0]==2)
 
@@ -387,24 +492,11 @@ public class Secondary implements Runnable {
 			   flag2=1;
 
 	   }
-		 gui.flag2 = flag2;
-		 gui.cx2= cx2 ;
-		 gui.cy2=cy2  ;
 
-		gui.circle2OnBridge= circle2OnBridge;
-		gui.channelBusy= channelBusy;
-
-		 gui.pixelMovement2=pixelMovement;
    }
    public void update3()
    {
-		 int flag3=gui.flag3;
-     int cx3 = gui.cx3;
-     int cy3 = gui.cy3;
-
-     int circle3OnBridge = gui.circle3OnBridge;
-     int channelBusy = gui.channelBusy;
-     int pixelMovement=gui.pixelMovement3;
+	   int pixelMovement=pixelMovement3;
 	 ///Transition on line 1
 	   if((flag3==1)&&(cx3==250)&& (cy3>=150 && cy3<=450))
 	   {
@@ -443,20 +535,18 @@ public class Secondary implements Runnable {
 	   {
 		   if(circle3OnBridge==0)
 		   {
-
-			   System.out.println();
-			   if(allowedOnBridge(3)==1)
-			   {
-				   circle3OnBridge=1;
-					   channelBusy=1;
-
-			   }
+		   if(channelBusy==0 )
+		   {
+			   if(queue[0]!=3)
+			   return;
+		   }
 		   else
 		   {
 			   return;
 		   }
 		   }
-
+		   circle3OnBridge=1;
+		   channelBusy=1;
 		   cx3+=pixelMovement;
 		   if(cx3>600)
 		   {
@@ -466,10 +556,7 @@ public class Secondary implements Runnable {
 		   {
 
 			   flag3+=1;
-			   circle3OnBridge=0;
-			   channelBusy=0;
 
-			   dequeue();
 
 
 		   }
@@ -478,7 +565,10 @@ public class Secondary implements Runnable {
 	   //Transition on line 4
 	   if((flag3==4)&&(cx3>=600&&cx3<=750)&&(cy3>=150 && cy3<=300))
 	   {
-
+		   circle3OnBridge=0;
+		   channelBusy=0;
+		   if(queue[0]==3)
+		   dequeue();
 		   cx3+=pixelMovement;
 		   cy3=-cx3+900;
 		   if(cx3>750)
@@ -523,18 +613,19 @@ public class Secondary implements Runnable {
 	   {
 		   if(circle3OnBridge==0)
 		   {
-			   if(allowedOnBridge(3)==1)
-			   {
-				   circle3OnBridge=1;
-					   channelBusy=1;
-			   }
+		   if(channelBusy==0 )
+		   {
+			   if(queue[0]!=3)
+			   return;
+		   }
 		   else
 		   {
 			   return;
 		   }
 		   }
 
-
+		   channelBusy=1;
+		   circle3OnBridge=1;
 		   cx3-=pixelMovement;
 		   if(cx3<400)
 			   cx3=400;
@@ -543,7 +634,7 @@ public class Secondary implements Runnable {
 			   flag3+=1;
 			   channelBusy=0;
 			   circle3OnBridge=0;
-			  // if(queue[0]==3)
+			   if(queue[0]==3)
 			   dequeue();
 
 
@@ -563,24 +654,13 @@ public class Secondary implements Runnable {
 			   flag3=1;
 
 	   }
-		 gui.flag3 = flag3;
-     gui.cx3= cx3 ;
-     gui.cy3=cy3  ;
 
-    gui.circle3OnBridge= circle3OnBridge;
-    gui.channelBusy= channelBusy;
-
-     gui.pixelMovement3=pixelMovement;
    }
    public void update4()
    {
-		 int flag4=gui.flag4;
-	 	int cx4 = gui.cx4;
-	 	int cy4 = gui.cy4;
 
-	 	int circle4OnBridge = gui.circle4OnBridge;
-	 	int channelBusy = gui.channelBusy;
-	 	int pixelMovement=gui.pixelMovement4;
+	   //System.out.println("ChannelBusy for ball 4:"+channelBusy);
+	   int pixelMovement=pixelMovement4;
 	 ///Transition on line 1
 	   if((flag4==1)&&(cx4==250)&& (cy4>=150 && cy4<=450))
 	   {
@@ -619,17 +699,18 @@ public class Secondary implements Runnable {
 	   {
 		   if(circle4OnBridge==0)
 		   {
-			   if(allowedOnBridge(4)==1)
-			   {
-				    circle4OnBridge=1;
-					   channelBusy=1;
-			   }
+		   if(channelBusy==0 )
+		   {
+			   if(queue[0]!=4)
+			   return;
+		   }
 		   else
 		   {
 			   return;
 		   }
 		   }
-
+		   circle4OnBridge=1;
+		   channelBusy=1;
 		   cx4+=pixelMovement;
 		   if(cx4>600)
 		   {
@@ -640,7 +721,7 @@ public class Secondary implements Runnable {
 			   flag4+=1;
 			   circle4OnBridge=0;
 			   channelBusy=0;
-			   //if(queue[4]==0)
+			   if(queue[4]==0)
 			   dequeue();
 
 		   }
@@ -687,7 +768,7 @@ public class Secondary implements Runnable {
 			   flag4+=1;
 			   if(onQueue(4)==0)
 			   {
-				  // System.out.println("Enqueuing");
+				   System.out.println("Enqueuing");
 			   enqueue(4);
 			   }
 		   }
@@ -697,17 +778,18 @@ public class Secondary implements Runnable {
 	   {
 		   if(circle4OnBridge==0)
 		   {
-			   if(allowedOnBridge(4)==1)
-			   {
-				   circle4OnBridge=1;
-					   channelBusy=1;
-			   }
+		   if(channelBusy==0 )
+		   {
+			   if(queue[0]!=4)
+			   return;
+		   }
 		   else
 		   {
 			   return;
 		   }
 		   }
-
+		   channelBusy=1;
+		   circle4OnBridge=1;
 		   cx4-=pixelMovement;
 		   if(cx4<400)
 			   cx4=400;
@@ -716,7 +798,7 @@ public class Secondary implements Runnable {
 			   flag4+=1;
 			   channelBusy=0;
 			   circle4OnBridge=0;
-			  // if(queue[0]==4)
+			   if(queue[0]==4)
 			   dequeue();
 
 
@@ -736,14 +818,7 @@ public class Secondary implements Runnable {
 			   flag4=1;
 
 	   }
-		 gui.flag4 = flag4;
-     gui.cx4= cx4 ;
-     gui.cy4=cy4  ;
 
-    gui.circle4OnBridge= circle4OnBridge;
-    gui.channelBusy= channelBusy;
-
-     gui.pixelMovement4=pixelMovement;
    }
 
    public  void enqueue(int personNumber)
@@ -785,29 +860,4 @@ public class Secondary implements Runnable {
 	   return 0;
    }
 
-   public int allowedOnBridge(int personNumber)
-   {
-	   int flagForPersonOnBridge=0;
-	   int flags[]={gui.flag1,gui.flag2,gui.flag3,gui.flag4};
-	   int personOnBridge=queue[0];
-	   if(personOnBridge!=0)
-	   {
-		 flagForPersonOnBridge=flags[personOnBridge-1];
-	   if(personOnBridge==0 || personOnBridge==personNumber)
-		   return 1;
-	   else
-	   {
-		   for(int i=0;i<4 && queue[i]!=0;i++)
-		   {
-			   if(flags[queue[i]-1]==flagForPersonOnBridge)
-			   {
-				   if(queue[i]==personNumber)
-					   return 1;
-			   }
-			   else break;
-		   }
-	   }
-	   }
-	   return 0;
-   }
 }
