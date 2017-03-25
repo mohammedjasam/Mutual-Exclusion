@@ -61,95 +61,74 @@ public class GUI {
 		frame.getContentPane().add(Control);
 		
 		JLabel Pink_L = new JLabel("Pink");
+		Pink_L.setBounds(230, 22, 34, 23);
 		Pink_L.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JSlider Pink_slider = new JSlider();
+		Pink_slider.setPaintTicks(true);
+		Pink_slider.setMajorTickSpacing(5);
+		Pink_slider.setMinorTickSpacing(1);
+		Pink_slider.setMinimum(5);
+		Pink_slider.setMaximum(20);
+		Pink_slider.setBounds(463, 19, 250, 26);
 		
 		JButton ChangeMode_btn = new JButton("Change Mode");
+		ChangeMode_btn.setBounds(1009, 38, 206, 132);
 		
 		JLabel Black_L = new JLabel("Black");
+		Black_L.setBounds(230, 56, 43, 23);
 		Black_L.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JSlider Black_slider = new JSlider();
+		Black_slider.setMinorTickSpacing(1);
+		Black_slider.setMinimum(5);
+		Black_slider.setMajorTickSpacing(5);
+		Black_slider.setMaximum(20);
+		Black_slider.setPaintTicks(true);
+		Black_slider.setBounds(463, 56, 250, 26);
 		
 		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setBounds(952, 122, 0, 0);
 		
 		JLabel Purple_L = new JLabel("Purple");
+		Purple_L.setBounds(230, 94, 53, 23);
 		Purple_L.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JSlider Purple_slider = new JSlider();
+		Purple_slider.setMinorTickSpacing(1);
+		Purple_slider.setMinimum(5);
+		Purple_slider.setMajorTickSpacing(5);
+		Purple_slider.setMaximum(20);
+		Purple_slider.setPaintTicks(true);
+		Purple_slider.setBounds(463, 91, 250, 26);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setBounds(1262, 106, 0, 0);
 		
 		JLabel Orange_L = new JLabel("Orange");
+		Orange_L.setBounds(230, 128, 62, 23);
 		Orange_L.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JSlider Orange_slider = new JSlider();
+		Orange_slider.setMinorTickSpacing(1);
+		Orange_slider.setMinimum(5);
+		Orange_slider.setMajorTickSpacing(5);
+		Orange_slider.setMaximum(20);
+		Orange_slider.setPaintTicks(true);
+		Orange_slider.setBounds(463, 128, 250, 26);
 		
 		JLabel lblNewLabel_2 = new JLabel("");
-		GroupLayout gl_Control = new GroupLayout(Control);
-		gl_Control.setHorizontalGroup(
-			gl_Control.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_Control.createSequentialGroup()
-					.addGap(230)
-					.addGroup(gl_Control.createParallelGroup(Alignment.LEADING)
-						.addComponent(Pink_L)
-						.addComponent(Black_L)
-						.addComponent(Orange_L)
-						.addComponent(Purple_L))
-					.addGap(171)
-					.addGroup(gl_Control.createParallelGroup(Alignment.LEADING)
-						.addComponent(Pink_slider, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_Control.createSequentialGroup()
-							.addGroup(gl_Control.createParallelGroup(Alignment.LEADING)
-								.addComponent(Orange_slider, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
-								.addComponent(Purple_slider, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
-								.addComponent(Black_slider, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE))
-							.addGap(239)
-							.addComponent(lblNewLabel)
-							.addGap(59)
-							.addComponent(ChangeMode_btn, GroupLayout.PREFERRED_SIZE, 204, GroupLayout.PREFERRED_SIZE)
-							.addGap(47)
-							.addComponent(lblNewLabel_1)))
-					.addContainerGap(229, Short.MAX_VALUE))
-		);
-		gl_Control.setVerticalGroup(
-			gl_Control.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_Control.createSequentialGroup()
-					.addGroup(gl_Control.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_Control.createSequentialGroup()
-							.addGap(56)
-							.addGroup(gl_Control.createParallelGroup(Alignment.LEADING)
-								.addComponent(ChangeMode_btn, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE)
-								.addGroup(gl_Control.createSequentialGroup()
-									.addGap(35)
-									.addGroup(gl_Control.createParallelGroup(Alignment.LEADING)
-										.addGroup(gl_Control.createSequentialGroup()
-											.addGap(15)
-											.addComponent(lblNewLabel_1))
-										.addGroup(gl_Control.createSequentialGroup()
-											.addGap(31)
-											.addComponent(lblNewLabel))))))
-						.addGroup(gl_Control.createSequentialGroup()
-							.addGap(22)
-							.addComponent(Pink_L)
-							.addGap(14)
-							.addComponent(Black_L)
-							.addGap(12)
-							.addComponent(Purple_L)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(Orange_L))
-						.addGroup(gl_Control.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(Pink_slider, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(Black_slider, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(9)
-							.addComponent(Purple_slider, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(Orange_slider, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(35, Short.MAX_VALUE))
-		);
-		Control.setLayout(gl_Control);
+		Control.setLayout(null);
+		Control.add(Pink_L);
+		Control.add(Black_L);
+		Control.add(Orange_L);
+		Control.add(Purple_L);
+		Control.add(Pink_slider);
+		Control.add(Orange_slider);
+		Control.add(Purple_slider);
+		Control.add(Black_slider);
+		Control.add(lblNewLabel);
+		Control.add(ChangeMode_btn);
+		Control.add(lblNewLabel_1);
 	}
 }
