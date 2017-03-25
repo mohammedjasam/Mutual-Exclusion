@@ -6,17 +6,53 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JSlider;
-import java.awt.GridLayout;
 import javax.swing.JButton;
-import java.awt.FlowLayout;
-import java.awt.BorderLayout;
-import javax.swing.BoxLayout;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class GUI {
 
+	int durationint=500;	//Duration of animation
+	int r=20;				//Radius of all the circles
+	int channelBusy=0;
+
+	int[] pixelMovement = new int[4];
+	int queue[]=new int [5];
+	int[] cx = new int[4];
+	int[] cy = new int[4];
+	int[] flag = new int[4];
+	int[] circleOnBridge = new int[4];
+	
+	
+	int line1x1=250,line1y1=150,line1x2=250,line1y2=450;					//Line 1
+	int line2x1=750,line2y1=line1y1,line2x2=750,line2y2=line1y2;			//Line 2
+	int line3x1=line1x1,line3y1=line1y1,line3x2=400,line3y2=300;			//Line 3
+	int line4x1=line1x2,line4y1=line1y2,line4x2=line3x2,line4y2=line3y2;	//Line 4
+	int line5x1=line4x2,line5y1=line4y2,line5x2=line4x2+200,line5y2=line4y2;//Line 5
+	int line6x1=line5x2,line6y1=line5y2,line6x2=line2x1,line6y2=line2y1;	//Line 6
+	int line7x1=line6x1,line7y1=line6y1,line7x2=line2x2,line7y2=line2y2;	//Line 7
+	
+	public void init() {
+
+		pixelMovement[0] = 5;
+		pixelMovement[1] = 7;
+		pixelMovement[2] = 9;
+		pixelMovement[3] = 11;
+		
+		cx[0]=250;cy[0]=250;   	//Circle 1 params
+		cx[1]=250;cy[1]=350;   	//Circle 2 params
+		cx[2]=750;cy[2]=250;	//Circle 3 params 
+		cx[3]=750;cy[3]=350;	//Circle 4 params
+		
+		flag[0]=1;
+		flag[1]=1;
+		flag[2]=5;
+		flag[3]=5;
+		
+		circleOnBridge[0]=0;
+		circleOnBridge[1]=0;
+		circleOnBridge[2]=0;
+		circleOnBridge[3]=0;
+	}
+	
 	private JFrame frame;
 
 	/**
@@ -40,6 +76,7 @@ public class GUI {
 	 */
 	public GUI() {
 		initialize();
+		init();
 	}
 
 	/**
@@ -87,9 +124,6 @@ public class GUI {
 		Black_slider.setPaintTicks(true);
 		Black_slider.setBounds(463, 56, 250, 26);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setBounds(952, 122, 0, 0);
-		
 		JLabel Purple_L = new JLabel("Purple");
 		Purple_L.setBounds(230, 94, 53, 23);
 		Purple_L.setHorizontalAlignment(SwingConstants.CENTER);
@@ -101,9 +135,6 @@ public class GUI {
 		Purple_slider.setMaximum(20);
 		Purple_slider.setPaintTicks(true);
 		Purple_slider.setBounds(463, 91, 250, 26);
-		
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setBounds(1262, 106, 0, 0);
 		
 		JLabel Orange_L = new JLabel("Orange");
 		Orange_L.setBounds(230, 128, 62, 23);
@@ -117,7 +148,6 @@ public class GUI {
 		Orange_slider.setPaintTicks(true);
 		Orange_slider.setBounds(463, 128, 250, 26);
 		
-		JLabel lblNewLabel_2 = new JLabel("");
 		Control.setLayout(null);
 		Control.add(Pink_L);
 		Control.add(Black_L);
@@ -127,8 +157,6 @@ public class GUI {
 		Control.add(Orange_slider);
 		Control.add(Purple_slider);
 		Control.add(Black_slider);
-		Control.add(lblNewLabel);
 		Control.add(ChangeMode_btn);
-		Control.add(lblNewLabel_1);
 	}
 }
