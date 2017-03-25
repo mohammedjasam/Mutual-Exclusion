@@ -1,4 +1,5 @@
 import java.awt.EventQueue;
+import java.awt.Graphics;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -7,9 +8,19 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JSlider;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 
 public class GUI {
-
+	
+	public class MyGraphics extends JComponent {
+		@Override
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+		}
+	}
+	
+	MyGraphics g = new MyGraphics();
+	
 	int durationint=500;	//Duration of animation
 	int r=20;				//Radius of all the circles
 	int channelBusy=0;
@@ -158,5 +169,9 @@ public class GUI {
 		Control.add(Purple_slider);
 		Control.add(Black_slider);
 		Control.add(ChangeMode_btn);
+		
+		Drawing.add(g);
+		Primary p = new Primary(this);
+		p.start();
 	}
 }

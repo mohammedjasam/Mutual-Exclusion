@@ -5,7 +5,6 @@ import java.awt.Graphics;
 public class Primary {
 	
 	GUI gui;
-	Graphics g;
 	
 	public Primary(GUI gui) {
 		this.gui = gui;
@@ -26,7 +25,7 @@ public class Primary {
 			try
 			{
 				Thread.sleep(50);
-				paint(this.g);
+				paint(gui.g.getGraphics());
 			}
 			catch(Exception e)
 			{
