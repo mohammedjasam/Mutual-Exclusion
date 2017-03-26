@@ -7,10 +7,10 @@ public class Secondary implements Runnable {
 	
 	int channelBusy;
 	
-	int cx1,cy1;   	//Circle 1 params
-	int cx2,cy2;   	//Circle 2 params
-	int cx3,cy3;	//Circle 3 params 
-	int cx4,cy4;	//Circle 4 params
+	int cx1,cy1;   	//Node 1 Coordinates
+	int cx2,cy2;   	//Node 2 Coordinates
+	int cx3,cy3;	//Node 3 Coordinates
+	int cx4,cy4;	//Node 4 Coordinates
 	
 	int flag1,flag2,flag3,flag4;	
 	int circle1OnBridge,circle2OnBridge,circle3OnBridge,circle4OnBridge;
@@ -21,16 +21,20 @@ public class Secondary implements Runnable {
 	}
 
 	public void start() {
-		flag1=1;
+		
+		// Initial Positions of the nodes in the Figure
+		flag1=1; 
 		flag2=1;
 		flag3=5;
 		flag4=5;
 		
+		// Flags to check the presence of particular node on the Bridge
 		circle1OnBridge=0;
 		circle2OnBridge=0;
 		circle3OnBridge=0;
 		circle4OnBridge=0;
 		
+		// Flag to check if the channel is busy or not!
 		channelBusy=0;
 		queue=new int[5];
 		
@@ -76,7 +80,7 @@ public class Secondary implements Runnable {
 
    public void update1()
    {
-	 ///Transition on line 1
+	 ///Path 1
 	   if((flag1==1)&&(cx1==250)&& (cy1>=150 && cy1<=450))
 	   {
 
@@ -87,7 +91,7 @@ public class Secondary implements Runnable {
 			   flag1+=1;
 
 	   }
-	   ///Transition on line 2
+	   ///Path 2
 	   if((flag1==2)&&(cx1>=250&&cx1<=400)&&(cy1>=150 && cy1<=300 ))
 	   {
 
@@ -107,7 +111,7 @@ public class Secondary implements Runnable {
 		   }
 	   }
 
-	   //Transition on line 3
+	   //Path 3
 	   if((flag1==3)&&(cx1>=400&&cx1<=600)&&(cy1==300))
 	   {
 		   if(circle1OnBridge==0)
@@ -122,11 +126,7 @@ public class Secondary implements Runnable {
 		   {
 			   return;
 		   }
-		   }
-
-
-		  // System.out.println("Queue front:"+queue[0]+"  channelBusy:"+channelBusy+"  circle1OnBridge:"+circle1OnBridge);
-
+	   }
 		   cx1+=gui.pixelMovement1;
 		   if(cx1>600)
 		   {
@@ -138,13 +138,11 @@ public class Secondary implements Runnable {
 			   flag1+=1;
 			   channelBusy=0;
 			   circle1OnBridge=0;
-			  // if(queue[0]==1)
 			   dequeue();
-
 		   }
 	   }
 
-	   //Transition on line 4
+	   //Path 4
 	   if((flag1==4)&&(cx1>=600&&cx1<=750)&&(cy1>=150 && cy1<=300))
 	   {
 
@@ -157,7 +155,7 @@ public class Secondary implements Runnable {
 		   if(cx1==750)
 			   flag1+=1;
 	   }
-	   //Transition on line 5
+	   //Path 5
 	   if((flag1==5)&&(cx1==750)&&(cy1>=150&&cy1<450))
 	   {
 		   cy1+=gui.pixelMovement1;
@@ -187,7 +185,7 @@ public class Secondary implements Runnable {
 			   enqueue(1);
 		   }
 	   }
-	   //Transition on line 6
+	   //Path 6
 	   if((flag1==7)&&(cx1>=400&&cx1<=600)&&(cy1==300))
 	   {
 		   if(circle1OnBridge==0)
@@ -214,13 +212,10 @@ public class Secondary implements Runnable {
 			   flag1+=1;
 			   channelBusy=0;
 			   circle1OnBridge=0;
-			   //if(queue[0]==1)
 			   dequeue();
-
-
 		   }
 	   }
-	   //Transition on line 7
+	   //Path 7
 	   if(flag1==8&&(cx1>=250&&cx1<=400)&&(cy1>=300&&cy1<=450))
 	   {
 
@@ -232,12 +227,11 @@ public class Secondary implements Runnable {
 			   cy1=450;
 		   if(cx1==250&&flag1==8)
 			   flag1=1;
-
 	   }
    }
    public void update2()
    {
-	 ///Transition on line 1
+	 ///Path 1
 	   if((flag2==1)&&(cx2==250)&& (cy2>=150 && cy2<=450))
 	   {
 
@@ -248,7 +242,7 @@ public class Secondary implements Runnable {
 			   flag2+=1;
 
 	   }
-	   ///Transition on line 2
+	   ///Path 2
 	   if((flag2==2)&&(cx2>=250&&cx2<=400)&&(cy2>=150 && cy2<=300 ))
 	   {
 
@@ -267,7 +261,7 @@ public class Secondary implements Runnable {
 		   }
 	   }
 
-	   //Transition on line 3
+	   //Path 3
 	   if((flag2==3)&&(cx2>=400&&cx2<=600)&&(cy2==300))
 	   {
 		   System.out.println();
@@ -295,15 +289,11 @@ public class Secondary implements Runnable {
 			   flag2+=1;
 			   channelBusy=0;
 			   circle2OnBridge=0;
-			   //if(queue[0]==2)
 			   dequeue();
-
-
-
 		   }
 	   }
 
-	   //Transition on line 4
+	   //Path 4
 	   if((flag2==4)&&(cx2>=600&&cx2<=750)&&(cy2>=150 && cy2<=300))
 	   {
 
@@ -316,7 +306,7 @@ public class Secondary implements Runnable {
 		   if(cx2==750)
 			   flag2+=1;
 	   }
-	   //Transition on line 5
+	   //Path 5
 	   if((flag2==5)&&(cx2==750)&&(cy2>=150&&cy2<450))
 	   {
 		   cy2+=gui.pixelMovement2;
@@ -346,7 +336,7 @@ public class Secondary implements Runnable {
 			   enqueue(2);
 		   }
 	   }
-	   //Transition on line 6
+	   //Path 6
 	   if((flag2==7)&&(cx2>=400&&cx2<=600)&&(cy2==300))
 	   {
 		   if(circle2OnBridge==0)
@@ -360,7 +350,7 @@ public class Secondary implements Runnable {
 		   {
 			   return;
 		   }
-		   }
+		}
 
 		   cx2-=gui.pixelMovement2;
 		   if(cx2<400)
@@ -370,13 +360,10 @@ public class Secondary implements Runnable {
 			   flag2+=1;
 			   channelBusy=0;
 			   circle2OnBridge=0;
-			   //if(queue[0]==2)
 			   dequeue();
-			   //if(queue[0]==2)
-
 		   }
 	   }
-	   //Transition on line 7
+	   //Path 7
 	   if(flag2==8&&(cx2>=250&&cx2<=400)&&(cy2>=300&&cy2<=450))
 	   {
 
@@ -393,7 +380,7 @@ public class Secondary implements Runnable {
    }
    public void update3()
    {
-	 ///Transition on line 1
+	 ///Path 1
 	   if((flag3==1)&&(cx3==250)&& (cy3>=150 && cy3<=450))
 	   {
 
@@ -404,7 +391,7 @@ public class Secondary implements Runnable {
 			   flag3+=1;
 
 	   }
-	   ///Transition on line 2
+	   ///Path 2
 	   if((flag3==2)&&(cx3>=250&&cx3<=400)&&(cy3>=150 && cy3<=300 ))
 	   {
 
@@ -426,7 +413,7 @@ public class Secondary implements Runnable {
 		   }
 	   }
 
-	   //Transition on line 3
+	   //Path 3
 	   if((flag3==3)&&(cx3>=400&&cx3<=600)&&(cy3==300))
 	   {
 		   if(circle3OnBridge==0)
@@ -443,7 +430,7 @@ public class Secondary implements Runnable {
 		   {
 			   return;
 		   }
-		   }
+	    }
 
 		   cx3+=gui.pixelMovement3;
 		   if(cx3>600)
@@ -452,18 +439,14 @@ public class Secondary implements Runnable {
 		   }
 		   if(cx3==600)
 		   {
-
 			   flag3+=1;
 			   circle3OnBridge=0;
 			   channelBusy=0;
-
 			   dequeue();
-
-
 		   }
 	   }
 
-	   //Transition on line 4
+	   //Path 4
 	   if((flag3==4)&&(cx3>=600&&cx3<=750)&&(cy3>=150 && cy3<=300))
 	   {
 
@@ -476,7 +459,7 @@ public class Secondary implements Runnable {
 		   if(cx3==750)
 			   flag3+=1;
 	   }
-	   //Transition on line 5
+	   //Path 5
 	   if((flag3==5)&&(cx3==750)&&(cy3>=150&&cy3<450))
 	   {
 		   cy3+=gui.pixelMovement3;
@@ -506,7 +489,7 @@ public class Secondary implements Runnable {
 			   enqueue(3);
 		   }
 	   }
-	   //Transition on line 6
+	   //Path 6
 	   if((flag3==7)&&(cx3>=400&&cx3<=600)&&(cy3==300))
 	   {
 		   if(circle3OnBridge==0)
@@ -531,13 +514,12 @@ public class Secondary implements Runnable {
 			   flag3+=1;
 			   channelBusy=0;
 			   circle3OnBridge=0;
-			  // if(queue[0]==3)
 			   dequeue();
 
 
 		   }
 	   }
-	   //Transition on line 7
+	   //Path 7
 	   if(flag3==8&&(cx3>=250&&cx3<=400)&&(cy3>=300&&cy3<=450))
 	   {
 
@@ -554,7 +536,7 @@ public class Secondary implements Runnable {
    }
    public void update4()
    {
-	 ///Transition on line 1
+	 ///Path 1
 	   if((flag4==1)&&(cx4==250)&& (cy4>=150 && cy4<=450))
 	   {
 
@@ -565,7 +547,7 @@ public class Secondary implements Runnable {
 			   flag4+=1;
 
 	   }
-	   ///Transition on line 2
+	   ///Path 2
 	   if((flag4==2)&&(cx4>=250&&cx4<=400)&&(cy4>=150 && cy4<=300 ))
 	   {
 
@@ -587,7 +569,7 @@ public class Secondary implements Runnable {
 		   }
 	   }
 
-	   //Transition on line 3
+	   //Path 3
 	   if((flag4==3)&&(cx4>=400&&cx4<=600)&&(cy4==300))
 	   {
 		   if(circle4OnBridge==0)
@@ -613,13 +595,12 @@ public class Secondary implements Runnable {
 			   flag4+=1;
 			   circle4OnBridge=0;
 			   channelBusy=0;
-			   //if(queue[4]==0)
 			   dequeue();
 
 		   }
 	   }
 
-	   //Transition on line 4
+	   //Path 4
 	   if((flag4==4)&&(cx4>=600&&cx4<=750)&&(cy4>=150 && cy4<=300))
 	   {
 
@@ -632,7 +613,7 @@ public class Secondary implements Runnable {
 		   if(cx4==750)
 			   flag4+=1;
 	   }
-	   //Transition on line 5
+	   //Path 5
 	   if((flag4==5)&&(cx4==750)&&(cy4>=150&&cy4<450))
 	   {
 		   cy4+=gui.pixelMovement4;
@@ -660,12 +641,11 @@ public class Secondary implements Runnable {
 			   flag4+=1;
 			   if(onQueue(4)==0)
 			   {
-				  // System.out.println("Enqueuing");
-			   enqueue(4);
+				   enqueue(4);
 			   }
 		   }
 	   }
-	   //Transition on line 6
+	   //Path 6
 	   if((flag4==7)&&(cx4>=400&&cx4<=600)&&(cy4==300))
 	   {
 		   if(circle4OnBridge==0)
@@ -689,13 +669,12 @@ public class Secondary implements Runnable {
 			   flag4+=1;
 			   channelBusy=0;
 			   circle4OnBridge=0;
-			  // if(queue[0]==4)
 			   dequeue();
 
 
 		   }
 	   }
-	   //Transition on line 7
+	   //Path 7
 	   if(flag4==8&&(cx4>=250&&cx4<=400)&&(cy4>=300&&cy4<=450))
 	   {
 
@@ -710,7 +689,7 @@ public class Secondary implements Runnable {
 
 	   }
    }
-
+   // Method to add the node to the Queue
    public  void enqueue(int personNumber)
    {
 
@@ -725,6 +704,7 @@ public class Secondary implements Runnable {
 	   queue[i]=personNumber;
 
    }
+   // Method to remove the node from the Queue
    public void dequeue()
    {
 
@@ -734,11 +714,9 @@ public class Secondary implements Runnable {
 
 	   if(j<3)
 	   queue[j+1]=0;
-	   //System.out.println("After dequeueing:");
-	   //for(int k=0;k<4;k++)
-		//   System.out.println(queue[k]+"	");
 
    }
+   // Method to check the presence of a node on the Queue
    public int onQueue(int personNumber)
    {
 	   int i=0;
@@ -749,7 +727,7 @@ public class Secondary implements Runnable {
 	   }
 	   return 0;
    }
-
+   // Special method to allow multiple nodes on the bridge simultaneously
    public int allowedOnBridge(int personNumber)
    {
 	   int flagForPersonOnBridge=0;
