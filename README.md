@@ -1,10 +1,10 @@
-# Mutual-Exclusion
+# Mutual Exclusion
 A Java Project to implement Ricart & Agrawalas Mutual Exclusion Algorithm
 
-# Requirements
+## Requirements
 * Java
 * Eclipse
 
-# Execution
-Run on Eclipse
-
+## Execution
+* Run on Eclipse
+* Run the Executable Jar file
