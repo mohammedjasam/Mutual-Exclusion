@@ -10,15 +10,19 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.JSlider;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class GUI {
+	int mode = 0;
+	Primary p = new Primary(this);;
+	Secondary s = new Secondary(this);;
+	
 	int pixelMovement1=5;
 	int pixelMovement2=5;
 	int pixelMovement3=5;
 	int pixelMovement4=5;
+	
 	public class DrawingPanel extends JPanel {
 		@Override
 		public void paintComponent(Graphics g) {			
@@ -57,13 +61,13 @@ public class GUI {
 	int durationint=500;	//Duration of animation
 	int r=20;				//Radius of all the circles
 	
-	int cx1=250,cy1=250;   	//Circle 1 params
-	int cx2=250,cy2=350;   	//Circle 2 params
-	int cx3=750,cy3=250;	//Circle 3 params 
-	int cx4=750,cy4=350;	//Circle 4 params
+	int cx1,cy1;   	//Circle 1 params
+	int cx2,cy2;   	//Circle 2 params
+	int cx3,cy3;	//Circle 3 params 
+	int cx4,cy4;	//Circle 4 params
 
-	int line1x1=cx1,line1y1=150,line1x2=cx1,line1y2=450;					//Line 1
-	int line2x1=cx3,line2y1=line1y1,line2x2=cx3,line2y2=line1y2;			//Line 2
+	int line1x1=250,line1y1=150,line1x2=250,line1y2=450;					//Line 1
+	int line2x1=750,line2y1=line1y1,line2x2=750,line2y2=line1y2;			//Line 2
 	int line3x1=line1x1,line3y1=line1y1,line3x2=400,line3y2=300;			//Line 3
 	int line4x1=line1x2,line4y1=line1y2,line4x2=line3x2,line4y2=line3y2;	//Line 4
 	int line5x1=line4x2,line5y1=line4y2,line5x2=line4x2+200,line5y2=line4y2;//Line 5
@@ -91,7 +95,15 @@ public class GUI {
 	/**
 	 * Create the application.
 	 */
+	public void init() {	
+		cx1=250;cy1=250;   	
+		cx2=250;cy2=350;   	
+		cx3=750;cy3=250;	
+		cx4=750;cy4=350;
+	}
+	
 	public GUI() {
+		init();
 		initialize();
 	}
 
@@ -139,9 +151,36 @@ public class GUI {
 			}
 		});
 		
-		JButton ChangeMode_btn = new JButton("Change Mode");
+		JButton ChangeMode_btn = new JButton("Start");
 		ChangeMode_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				init();
+				if(mode == 0) {
+					s.stop();
+					try {
+						Thread.sleep(500);
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					p.start();
+					mode = 1;
+					ChangeMode_btn.setText("Change Mode (Multinode)");
+					frame.setTitle("Simulating Single Node");
+				}
+				else {
+					p.stop();
+					try {
+						Thread.sleep(500);
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					s.start();
+					mode = 0;
+					ChangeMode_btn.setText("Change Mode (SingleNode)");
+					frame.setTitle("Simulating Multinode Node");
+				}
 			}
 		});
 		ChangeMode_btn.setBounds(1009, 38, 206, 132);
@@ -227,9 +266,5 @@ public class GUI {
 		Control.add(Pink_slider);
 		Control.add(Black_slider);
 		Control.add(ChangeMode_btn);
-		
-		Primary p = new Primary(this);
-		
-//		Secondary s = new Secondary(this);
 	}
 }

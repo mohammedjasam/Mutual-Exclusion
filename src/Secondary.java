@@ -3,40 +3,49 @@ public class Secondary implements Runnable {
 	GUI gui;
 	Thread t;
 	int[] queue;
+	boolean runThread;
 	
-	int channelBusy=0;
+	int channelBusy;
 	
 	int cx1,cy1;   	//Circle 1 params
 	int cx2,cy2;   	//Circle 2 params
 	int cx3,cy3;	//Circle 3 params 
 	int cx4,cy4;	//Circle 4 params
 	
-	int flag1=1;
-	int flag2=1;
-	int flag3=5;
-	int flag4=5;
-	
-	int circle1OnBridge=0;
-	int circle2OnBridge=0;
-	int circle3OnBridge=0;
-	int circle4OnBridge=0;
-	
-//	int pixelMovement1 = 5;
-//	int pixelMovement2 = 7;
-//	int pixelMovement3 = 9;
-//	int pixelMovement4 = 10;
+	int flag1,flag2,flag3,flag4;	
+	int circle1OnBridge,circle2OnBridge,circle3OnBridge,circle4OnBridge;
 	
 
 	public Secondary(GUI gui) {
 		this.gui = gui;
+	}
+
+	public void start() {
+		flag1=1;
+		flag2=1;
+		flag3=5;
+		flag4=5;
+		
+		circle1OnBridge=0;
+		circle2OnBridge=0;
+		circle3OnBridge=0;
+		circle4OnBridge=0;
+		
+		channelBusy=0;
 		queue=new int[5];
+		
+		runThread=true;
 		t=new Thread(this);
 		t.start();
+	}
+	
+	public void stop() {
+		runThread = false;
 	}
 
 	public void run()
 	{
-		while(true)
+		while(runThread)
 		{
 			cx1=gui.cx1;cy1=gui.cy1;
 			cx2=gui.cx2;cy2=gui.cy2;
