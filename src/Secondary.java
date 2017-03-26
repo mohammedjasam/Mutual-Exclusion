@@ -21,10 +21,10 @@ public class Secondary implements Runnable {
 	int circle3OnBridge=0;
 	int circle4OnBridge=0;
 	
-	int pixelMovement1 = 5;
-	int pixelMovement2 = 7;
-	int pixelMovement3 = 9;
-	int pixelMovement4 = 10;
+//	int pixelMovement1 = 5;
+//	int pixelMovement2 = 7;
+//	int pixelMovement3 = 9;
+//	int pixelMovement4 = 10;
 	
 
 	public Secondary(GUI gui) {
@@ -71,7 +71,7 @@ public class Secondary implements Runnable {
 	   if((flag1==1)&&(cx1==250)&& (cy1>=150 && cy1<=450))
 	   {
 
-			   cy1-=pixelMovement1;
+			   cy1-=gui.pixelMovement1;
 			   if(cy1<=150)
 				   cy1=150;
 			   if(cy1==150)
@@ -82,7 +82,7 @@ public class Secondary implements Runnable {
 	   if((flag1==2)&&(cx1>=250&&cx1<=400)&&(cy1>=150 && cy1<=300 ))
 	   {
 
-		   cx1+=pixelMovement1;
+		   cx1+=gui.pixelMovement1;
 		   cy1=cx1-100;
 		   if(cx1>400)
 		   {
@@ -118,7 +118,7 @@ public class Secondary implements Runnable {
 
 		  // System.out.println("Queue front:"+queue[0]+"  channelBusy:"+channelBusy+"  circle1OnBridge:"+circle1OnBridge);
 
-		   cx1+=pixelMovement1;
+		   cx1+=gui.pixelMovement1;
 		   if(cx1>600)
 		   {
 			   cx1=600;
@@ -139,7 +139,7 @@ public class Secondary implements Runnable {
 	   if((flag1==4)&&(cx1>=600&&cx1<=750)&&(cy1>=150 && cy1<=300))
 	   {
 
-		   cx1+=pixelMovement1;
+		   cx1+=gui.pixelMovement1;
 		   cy1=-cx1+900;
 		   if(cx1>750)
 			   cx1=750;
@@ -151,7 +151,7 @@ public class Secondary implements Runnable {
 	   //Transition on line 5
 	   if((flag1==5)&&(cx1==750)&&(cy1>=150&&cy1<450))
 	   {
-		   cy1+=pixelMovement1;
+		   cy1+=gui.pixelMovement1;
 		   if(cy1>450)
 			   cy1=450;
 		   if(cy1==450)
@@ -161,7 +161,7 @@ public class Secondary implements Runnable {
 	   }
 	   if((flag1==6)&&(cx1>=600&&cx1<=750)&&(cy1>=300&&cy1<=450))
 	   {
-		   cx1-=pixelMovement1;
+		   cx1-=gui.pixelMovement1;
 		   cy1=cx1-300;
 		   if(cy1<300)
 		   {
@@ -194,7 +194,7 @@ public class Secondary implements Runnable {
 		   }
 		   }
 
-		   cx1-=pixelMovement1;
+		   cx1-=gui.pixelMovement1;
 		   if(cx1<400)
 		   {
 			   cx1=400;
@@ -215,7 +215,7 @@ public class Secondary implements Runnable {
 	   if(flag1==8&&(cx1>=250&&cx1<=400)&&(cy1>=300&&cy1<=450))
 	   {
 
-		   cx1-=pixelMovement1;
+		   cx1-=gui.pixelMovement1;
 		   cy1=-cx1+700;
 		   if(cx1<250)
 			   cx1=250;
@@ -232,7 +232,7 @@ public class Secondary implements Runnable {
 	   if((flag2==1)&&(cx2==250)&& (cy2>=150 && cy2<=450))
 	   {
 
-			   cy2-=pixelMovement2;
+			   cy2-=gui.pixelMovement2;
 			   if(cy2<=150)
 				   cy2=150;
 			   if(cy2==150)
@@ -243,7 +243,7 @@ public class Secondary implements Runnable {
 	   if((flag2==2)&&(cx2>=250&&cx2<=400)&&(cy2>=150 && cy2<=300 ))
 	   {
 
-		   cx2+=pixelMovement2;
+		   cx2+=gui.pixelMovement2;
 		   cy2=cx2-100;
 		   if(cx2>400)
 		   {
@@ -275,7 +275,7 @@ public class Secondary implements Runnable {
 		   }
 		   }
 
-		   cx2+=pixelMovement2;
+		   cx2+=gui.pixelMovement2;
 		   if(cx2>600)
 		   {
 			   cx2=600;
@@ -298,7 +298,7 @@ public class Secondary implements Runnable {
 	   if((flag2==4)&&(cx2>=600&&cx2<=750)&&(cy2>=150 && cy2<=300))
 	   {
 
-		   cx2+=pixelMovement2;
+		   cx2+=gui.pixelMovement2;
 		   cy2=-cx2+900;
 		   if(cx2>750)
 			   cx2=750;
@@ -310,7 +310,7 @@ public class Secondary implements Runnable {
 	   //Transition on line 5
 	   if((flag2==5)&&(cx2==750)&&(cy2>=150&&cy2<450))
 	   {
-		   cy2+=pixelMovement2;
+		   cy2+=gui.pixelMovement2;
 		   if(cy2>450)
 			   cy2=450;
 		   if(cy2==450)
@@ -320,7 +320,7 @@ public class Secondary implements Runnable {
 	   }
 	   if((flag2==6)&&(cx2>=600&&cx2<=750)&&(cy2>=300&&cy2<=450))
 	   {
-		   cx2-=pixelMovement2;
+		   cx2-=gui.pixelMovement2;
 		   cy2=cx2-300;
 		   if(cy2<300)
 		   {
@@ -353,7 +353,7 @@ public class Secondary implements Runnable {
 		   }
 		   }
 
-		   cx2-=pixelMovement2;
+		   cx2-=gui.pixelMovement2;
 		   if(cx2<400)
 			   cx2=400;
 		   if(cx2==400)
@@ -371,7 +371,7 @@ public class Secondary implements Runnable {
 	   if(flag2==8&&(cx2>=250&&cx2<=400)&&(cy2>=300&&cy2<=450))
 	   {
 
-		   cx2-=pixelMovement2;
+		   cx2-=gui.pixelMovement2;
 		   cy2=-cx2+700;
 		   if(cx2<250)
 			   cx2=250;
@@ -388,7 +388,7 @@ public class Secondary implements Runnable {
 	   if((flag3==1)&&(cx3==250)&& (cy3>=150 && cy3<=450))
 	   {
 
-			   cy3-=pixelMovement3;
+			   cy3-=gui.pixelMovement3;
 			   if(cy3<=150)
 				   cy3=150;
 			   if(cy3==150)
@@ -399,7 +399,7 @@ public class Secondary implements Runnable {
 	   if((flag3==2)&&(cx3>=250&&cx3<=400)&&(cy3>=150 && cy3<=300 ))
 	   {
 
-		   cx3+=pixelMovement3;
+		   cx3+=gui.pixelMovement3;
 		   cy3=cx3-100;
 		   if(cx3>400)
 		   {
@@ -436,7 +436,7 @@ public class Secondary implements Runnable {
 		   }
 		   }
 
-		   cx3+=pixelMovement3;
+		   cx3+=gui.pixelMovement3;
 		   if(cx3>600)
 		   {
 			   cx3=600;
@@ -458,7 +458,7 @@ public class Secondary implements Runnable {
 	   if((flag3==4)&&(cx3>=600&&cx3<=750)&&(cy3>=150 && cy3<=300))
 	   {
 
-		   cx3+=pixelMovement3;
+		   cx3+=gui.pixelMovement3;
 		   cy3=-cx3+900;
 		   if(cx3>750)
 			   cx3=750;
@@ -470,7 +470,7 @@ public class Secondary implements Runnable {
 	   //Transition on line 5
 	   if((flag3==5)&&(cx3==750)&&(cy3>=150&&cy3<450))
 	   {
-		   cy3+=pixelMovement3;
+		   cy3+=gui.pixelMovement3;
 		   if(cy3>450)
 			   cy3=450;
 		   if(cy3==450)
@@ -480,7 +480,7 @@ public class Secondary implements Runnable {
 	   }
 	   if((flag3==6)&&(cx3>=600&&cx3<=750)&&(cy3>=300&&cy3<=450))
 	   {
-		   cx3-=pixelMovement3;
+		   cx3-=gui.pixelMovement3;
 		   cy3=cx3-300;
 		   if(cy3<300)
 		   {
@@ -514,7 +514,7 @@ public class Secondary implements Runnable {
 		   }
 
 
-		   cx3-=pixelMovement3;
+		   cx3-=gui.pixelMovement3;
 		   if(cx3<400)
 			   cx3=400;
 		   if(cx3==400)
@@ -532,7 +532,7 @@ public class Secondary implements Runnable {
 	   if(flag3==8&&(cx3>=250&&cx3<=400)&&(cy3>=300&&cy3<=450))
 	   {
 
-		   cx3-=pixelMovement3;
+		   cx3-=gui.pixelMovement3;
 		   cy3=-cx3+700;
 		   if(cx3<250)
 			   cx3=250;
@@ -549,7 +549,7 @@ public class Secondary implements Runnable {
 	   if((flag4==1)&&(cx4==250)&& (cy4>=150 && cy4<=450))
 	   {
 
-			   cy4-=pixelMovement4;
+			   cy4-=gui.pixelMovement4;
 			   if(cy4<=150)
 				   cy4=150;
 			   if(cy4==150)
@@ -560,7 +560,7 @@ public class Secondary implements Runnable {
 	   if((flag4==2)&&(cx4>=250&&cx4<=400)&&(cy4>=150 && cy4<=300 ))
 	   {
 
-		   cx4+=pixelMovement4;
+		   cx4+=gui.pixelMovement4;
 		   cy4=cx4-100;
 		   if(cx4>400)
 		   {
@@ -594,7 +594,7 @@ public class Secondary implements Runnable {
 		   }
 		   }
 
-		   cx4+=pixelMovement4;
+		   cx4+=gui.pixelMovement4;
 		   if(cx4>600)
 		   {
 			   cx4=600;
@@ -614,7 +614,7 @@ public class Secondary implements Runnable {
 	   if((flag4==4)&&(cx4>=600&&cx4<=750)&&(cy4>=150 && cy4<=300))
 	   {
 
-		   cx4+=pixelMovement4;
+		   cx4+=gui.pixelMovement4;
 		   cy4=-cx4+900;
 		   if(cx4>750)
 			   cx4=750;
@@ -626,7 +626,7 @@ public class Secondary implements Runnable {
 	   //Transition on line 5
 	   if((flag4==5)&&(cx4==750)&&(cy4>=150&&cy4<450))
 	   {
-		   cy4+=pixelMovement4;
+		   cy4+=gui.pixelMovement4;
 		   if(cy4>450)
 			   cy4=450;
 		   if(cy4==450)
@@ -636,7 +636,7 @@ public class Secondary implements Runnable {
 	   }
 	   if((flag4==6)&&(cx4>=600&&cx4<=750)&&(cy4>=300&&cy4<=450))
 	   {
-		   cx4-=pixelMovement4;
+		   cx4-=gui.pixelMovement4;
 		   cy4=cx4-300;
 		   if(cy4<300)
 		   {
@@ -672,7 +672,7 @@ public class Secondary implements Runnable {
 		   }
 		   }
 
-		   cx4-=pixelMovement4;
+		   cx4-=gui.pixelMovement4;
 		   if(cx4<400)
 			   cx4=400;
 		   if(cx4==400)
@@ -690,7 +690,7 @@ public class Secondary implements Runnable {
 	   if(flag4==8&&(cx4>=250&&cx4<=400)&&(cy4>=300&&cy4<=450))
 	   {
 
-		   cx4-=pixelMovement4;
+		   cx4-=gui.pixelMovement4;
 		   cy4=-cx4+700;
 		   if(cx4<250)
 			   cx4=250;

@@ -11,6 +11,8 @@ import javax.swing.event.ChangeListener;
 import javax.swing.JSlider;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class GUI {
 	int pixelMovement1=5;
@@ -113,35 +115,39 @@ public class GUI {
 		Control.setBounds(0, 465, 1342, 189);
 		frame.getContentPane().add(Control);
 		
-		JLabel Pink_L = new JLabel("Pink");
-		Pink_L.setBounds(230, 22, 34, 23);
-		Pink_L.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel Blue_L = new JLabel("    Blue");
+		Blue_L.setBounds(215, 22, 62, 23);
+		Blue_L.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JSlider Pink_slider = new JSlider();
-		Pink_slider.setValue(5);
-		Pink_slider.setPaintTicks(true);
-		Pink_slider.setMajorTickSpacing(5);
-		Pink_slider.setMinorTickSpacing(1);
-		Pink_slider.setMinimum(5);
-		Pink_slider.setMaximum(20);
-		Pink_slider.setBounds(463, 19, 250, 26);
+		JSlider Blue_slider = new JSlider();
+		Blue_slider.setValue(5);
+		Blue_slider.setPaintTicks(true);
+		Blue_slider.setMajorTickSpacing(5);
+		Blue_slider.setMinorTickSpacing(1);
+		Blue_slider.setMinimum(5);
+		Blue_slider.setMaximum(20);
+		Blue_slider.setBounds(463, 19, 250, 26);
 		
-		Pink_slider.addChangeListener(new ChangeListener() {
+		Blue_slider.addChangeListener(new ChangeListener() {
 			
 			@Override
 			public void stateChanged(ChangeEvent e) {
 				// TODO Auto-generated method stub
 				JSlider source = (JSlider)e.getSource();
-//				System.out.println("The Value of Pink has change to "+ source.getValue());
+//				System.out.println("The Value of Blue has change to "+ source.getValue());
 				pixelMovement1=source.getValue();
 			}
 		});
 		
 		JButton ChangeMode_btn = new JButton("Change Mode");
+		ChangeMode_btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		ChangeMode_btn.setBounds(1009, 38, 206, 132);
 		
-		JLabel Black_L = new JLabel("Black");
-		Black_L.setBounds(230, 56, 43, 23);
+		JLabel Black_L = new JLabel("    Black");
+		Black_L.setBounds(195, 59, 108, 23);
 		Black_L.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JSlider Black_slider = new JSlider();
@@ -164,65 +170,66 @@ public class GUI {
 			}
 		});
 		
-		JLabel Purple_L = new JLabel("Purple");
-		Purple_L.setBounds(230, 94, 53, 23);
-		Purple_L.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel Pink_L = new JLabel("Pink");
+		Pink_L.setBounds(221, 94, 62, 23);
+		Pink_L.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JSlider Purple_slider = new JSlider();
-		Purple_slider.setValue(5);
-		Purple_slider.setMinorTickSpacing(1);
-		Purple_slider.setMinimum(5);
-		Purple_slider.setMajorTickSpacing(5);
-		Purple_slider.setMaximum(20);
-		Purple_slider.setPaintTicks(true);
-		Purple_slider.setBounds(463, 91, 250, 26);
-		Purple_slider.addChangeListener(new ChangeListener() {
+		JSlider Pink_slider = new JSlider();
+		Pink_slider.setValue(5);
+		Pink_slider.setMinorTickSpacing(1);
+		Pink_slider.setMinimum(5);
+		Pink_slider.setMajorTickSpacing(5);
+		Pink_slider.setMaximum(20);
+		Pink_slider.setPaintTicks(true);
+		Pink_slider.setBounds(463, 91, 250, 26);
+		Pink_slider.addChangeListener(new ChangeListener() {
 			
 			@Override
 			public void stateChanged(ChangeEvent e) {
 				// TODO Auto-generated method stub
 				JSlider source = (JSlider)e.getSource();
-//				System.out.println("The Value of Purple has change to "+ source.getValue());
+//				System.out.println("The Value of Pink has change to "+ source.getValue());
 				pixelMovement3=source.getValue();
 			}
 		});
 		
-		JLabel Orange_L = new JLabel("Orange");
-		Orange_L.setBounds(230, 128, 62, 23);
-		Orange_L.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel Yellow_L = new JLabel("Yellow");
+		Yellow_L.setBounds(215, 128, 88, 23);
+		Yellow_L.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JSlider Orange_slider = new JSlider();
-		Orange_slider.setValue(5);
-		Orange_slider.setMinorTickSpacing(1);
-		Orange_slider.setMinimum(5);
-		Orange_slider.setMajorTickSpacing(5);
-		Orange_slider.setMaximum(20);
-		Orange_slider.setPaintTicks(true);
-		Orange_slider.setBounds(463, 128, 250, 26);
+		JSlider Yellow_slider = new JSlider();
+		Yellow_slider.setValue(5);
+		Yellow_slider.setMinorTickSpacing(1);
+		Yellow_slider.setMinimum(5);
+		Yellow_slider.setMajorTickSpacing(5);
+		Yellow_slider.setMaximum(20);
+		Yellow_slider.setPaintTicks(true);
+		Yellow_slider.setBounds(463, 128, 250, 26);
 		
-		Orange_slider.addChangeListener(new ChangeListener() {
+		Yellow_slider.addChangeListener(new ChangeListener() {
 			
 			@Override
 			public void stateChanged(ChangeEvent e) {
 				// TODO Auto-generated method stub
 				JSlider source = (JSlider)e.getSource();
-//				System.out.println("The Value of Orange has change to "+ source.getValue());
+//				System.out.println("The Value of Yellow has change to "+ source.getValue());
 				pixelMovement4=source.getValue();
 			}
 		});
 		
 		Control.setLayout(null);
-		Control.add(Pink_L);
+		Control.add(Blue_L);
 		Control.add(Black_L);
-		Control.add(Orange_L);
-		Control.add(Purple_L);
+		Control.add(Yellow_L);
+		Control.add(Pink_L);
+		Control.add(Blue_slider);
+		Control.add(Yellow_slider);
 		Control.add(Pink_slider);
-		Control.add(Orange_slider);
-		Control.add(Purple_slider);
 		Control.add(Black_slider);
 		Control.add(ChangeMode_btn);
 		
 		Primary p = new Primary(this);
+		
 //		Secondary s = new Secondary(this);
 	}
 }
