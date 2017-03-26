@@ -59,12 +59,12 @@ public class GUI {
 	}
 	
 	int durationint=500;	//Duration of animation
-	int r=20;				//Radius of all the circles
+	int r=20;				//Radius of all the Nodes
 	
-	int cx1,cy1;   	//Circle 1 params
-	int cx2,cy2;   	//Circle 2 params
-	int cx3,cy3;	//Circle 3 params 
-	int cx4,cy4;	//Circle 4 params
+	int cx1,cy1;   	//Node 1 Coordinates
+	int cx2,cy2;   	//Node 2 Coordinates
+	int cx3,cy3;	//Node 3 Coordinates
+	int cx4,cy4;	//Node 4 Coordinates
 
 	int line1x1=250,line1y1=150,line1x2=250,line1y2=450;					//Line 1
 	int line2x1=750,line2y1=line1y1,line2x2=750,line2y2=line1y2;			//Line 2
@@ -75,7 +75,7 @@ public class GUI {
 	int line7x1=line6x1,line7y1=line6y1,line7x2=line2x2,line7y2=line2y2;	//Line 7
 	
 	JFrame frame;
-
+	
 	/**
 	 * Launch the application.
 	 */
@@ -117,7 +117,7 @@ public class GUI {
 		frame.setBounds(0, 0, 1366, 718);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
+		frame.setTitle("Ricart & Agrawala's Mutual Exclusion Simulation");
 		drawingPanel = new DrawingPanel();
 		drawingPanel.setBackground(Color.WHITE);
 		drawingPanel.setBounds(0, 0, 1342, 464);
@@ -146,7 +146,6 @@ public class GUI {
 			public void stateChanged(ChangeEvent e) {
 				// TODO Auto-generated method stub
 				JSlider source = (JSlider)e.getSource();
-//				System.out.println("The Value of Blue has change to "+ source.getValue());
 				pixelMovement1=source.getValue();
 			}
 		});
@@ -165,7 +164,7 @@ public class GUI {
 					}
 					p.start();
 					mode = 1;
-					ChangeMode_btn.setText("Change Mode (Multinode)");
+					ChangeMode_btn.setText("Change Mode (Multiple Nodes)");
 					frame.setTitle("Simulating Single Node");
 				}
 				else {
@@ -178,8 +177,8 @@ public class GUI {
 					}
 					s.start();
 					mode = 0;
-					ChangeMode_btn.setText("Change Mode (SingleNode)");
-					frame.setTitle("Simulating Multinode Node");
+					ChangeMode_btn.setText("Change Mode (Single Node)");
+					frame.setTitle("Simulating Multiple Nodes");
 				}
 			}
 		});
@@ -204,7 +203,6 @@ public class GUI {
 			public void stateChanged(ChangeEvent e) {
 				// TODO Auto-generated method stub
 				JSlider source = (JSlider)e.getSource();
-//				System.out.println("The value of Black has change to "+ source.getValue());
 				pixelMovement2=source.getValue();
 			}
 		});
@@ -227,7 +225,6 @@ public class GUI {
 			public void stateChanged(ChangeEvent e) {
 				// TODO Auto-generated method stub
 				JSlider source = (JSlider)e.getSource();
-//				System.out.println("The Value of Pink has change to "+ source.getValue());
 				pixelMovement3=source.getValue();
 			}
 		});
@@ -245,13 +242,13 @@ public class GUI {
 		Yellow_slider.setPaintTicks(true);
 		Yellow_slider.setBounds(463, 128, 250, 26);
 		
+		
 		Yellow_slider.addChangeListener(new ChangeListener() {
 			
 			@Override
 			public void stateChanged(ChangeEvent e) {
 				// TODO Auto-generated method stub
 				JSlider source = (JSlider)e.getSource();
-//				System.out.println("The Value of Yellow has change to "+ source.getValue());
 				pixelMovement4=source.getValue();
 			}
 		});
