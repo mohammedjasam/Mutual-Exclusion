@@ -14,11 +14,12 @@ public class GUI {
 	
 	public class DrawingPanel extends JPanel {
 		@Override
-		public void paintComponent(Graphics g) {
+		public void paintComponent(Graphics g) {			
 			super.paintComponent(g);
 			
+			g.translate(200, -100);
 			//Drawing circles 1 through 4
-			g.setColor(Color.PINK);
+			g.setColor(Color.BLUE);
 			drawCircle(g,cx1,cy1,r);
 			g.setColor(Color.BLACK);
 			drawCircle(g,cx2,cy2,r);
@@ -47,36 +48,12 @@ public class GUI {
 	
 	int durationint=500;	//Duration of animation
 	int r=20;				//Radius of all the circles
-	int channelBusy=0;
-
-//	int[] pixelMovement = new int[4];
-//	int queue[]=new int [5];
-//	int[] cx = new int[4];
-//	int[] cy = new int[4];
-//	int[] flag = new int[4];
-//	int[] circleOnBridge = new int[4];
-	
-	
-	int pixelMovement1 = 5;
-	int pixelMovement2 = 7;
-	int pixelMovement3 = 9;
-	int pixelMovement4 = 10;
 	
 	int cx1=250,cy1=250;   	//Circle 1 params
 	int cx2=250,cy2=350;   	//Circle 2 params
 	int cx3=750,cy3=250;	//Circle 3 params 
 	int cx4=750,cy4=350;	//Circle 4 params
-	
-	int flag1=1;
-	int flag2=1;
-	int flag3=5;
-	int flag4=5;
-	
-	int circle1OnBridge=0;
-	int circle2OnBridge=0;
-	int circle3OnBridge=0;
-	int circle4OnBridge=0;
-	
+
 	int line1x1=cx1,line1y1=150,line1x2=cx1,line1y2=450;					//Line 1
 	int line2x1=cx3,line2y1=line1y1,line2x2=cx3,line2y2=line1y2;			//Line 2
 	int line3x1=line1x1,line3y1=line1y1,line3x2=400,line3y2=300;			//Line 3
@@ -84,31 +61,6 @@ public class GUI {
 	int line5x1=line4x2,line5y1=line4y2,line5x2=line4x2+200,line5y2=line4y2;//Line 5
 	int line6x1=line5x2,line6y1=line5y2,line6x2=line2x1,line6y2=line2y1;	//Line 6
 	int line7x1=line6x1,line7y1=line6y1,line7x2=line2x2,line7y2=line2y2;	//Line 7
-	
-	public void init() {
-
-//		pixelMovement[0] = 5;
-//		pixelMovement[1] = 7;
-//		pixelMovement[2] = 9;
-//		pixelMovement[3] = 11;
-//		
-//		cx[0]=250;cy[0]=250;   	//Circle 1 params
-//		cx[1]=250;cy[1]=350;   	//Circle 2 params
-//		cx[2]=750;cy[2]=250;	//Circle 3 params 
-//		cx[3]=750;cy[3]=350;	//Circle 4 params
-//		
-//		flag[0]=1;
-//		flag[1]=1;
-//		flag[2]=5;
-//		flag[3]=5;
-//		
-//		circleOnBridge[0]=0;
-//		circleOnBridge[1]=0;
-//		circleOnBridge[2]=0;
-//		circleOnBridge[3]=0;
-		
-
-	}
 	
 	JFrame frame;
 
@@ -132,7 +84,6 @@ public class GUI {
 	 * Create the application.
 	 */
 	public GUI() {
-		//init();
 		initialize();
 	}
 
@@ -218,8 +169,7 @@ public class GUI {
 		Control.add(Black_slider);
 		Control.add(ChangeMode_btn);
 		
-//		Primary p = new Primary(this);
-//		p.start();
+		//Primary p = new Primary(this);
 		Secondary s = new Secondary(this);
 	}
 }
