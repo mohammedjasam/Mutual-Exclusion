@@ -6,19 +6,27 @@ import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.JSlider;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class GUI {
-	
+	int pixelMovement1=5;
+	int pixelMovement2=5;
+	int pixelMovement3=5;
+	int pixelMovement4=5;
 	public class DrawingPanel extends JPanel {
 		@Override
-		public void paintComponent(Graphics g) {
+		public void paintComponent(Graphics g) {			
 			super.paintComponent(g);
 			
+			g.translate(200, -100);
 			//Drawing circles 1 through 4
-			g.setColor(Color.PINK);
+			g.setColor(Color.BLUE);
 			drawCircle(g,cx1,cy1,r);
 			g.setColor(Color.BLACK);
 			drawCircle(g,cx2,cy2,r);
@@ -38,6 +46,7 @@ public class GUI {
 			g.drawLine(line7x1,line7y1,line7x2,line7y2);
 		}
 		
+		
 		public void drawCircle(Graphics g, int x, int y, int r) {
 		   x = x-(r/2);
 		   y = y-(r/2);
@@ -47,36 +56,12 @@ public class GUI {
 	
 	int durationint=500;	//Duration of animation
 	int r=20;				//Radius of all the circles
-	int channelBusy=0;
-
-//	int[] pixelMovement = new int[4];
-//	int queue[]=new int [5];
-//	int[] cx = new int[4];
-//	int[] cy = new int[4];
-//	int[] flag = new int[4];
-//	int[] circleOnBridge = new int[4];
-	
-	
-	int pixelMovement1 = 5;
-	int pixelMovement2 = 7;
-	int pixelMovement3 = 9;
-	int pixelMovement4 = 10;
 	
 	int cx1=250,cy1=250;   	//Circle 1 params
 	int cx2=250,cy2=350;   	//Circle 2 params
 	int cx3=750,cy3=250;	//Circle 3 params 
 	int cx4=750,cy4=350;	//Circle 4 params
-	
-	int flag1=1;
-	int flag2=1;
-	int flag3=5;
-	int flag4=5;
-	
-	int circle1OnBridge=0;
-	int circle2OnBridge=0;
-	int circle3OnBridge=0;
-	int circle4OnBridge=0;
-	
+
 	int line1x1=cx1,line1y1=150,line1x2=cx1,line1y2=450;					//Line 1
 	int line2x1=cx3,line2y1=line1y1,line2x2=cx3,line2y2=line1y2;			//Line 2
 	int line3x1=line1x1,line3y1=line1y1,line3x2=400,line3y2=300;			//Line 3
@@ -84,31 +69,6 @@ public class GUI {
 	int line5x1=line4x2,line5y1=line4y2,line5x2=line4x2+200,line5y2=line4y2;//Line 5
 	int line6x1=line5x2,line6y1=line5y2,line6x2=line2x1,line6y2=line2y1;	//Line 6
 	int line7x1=line6x1,line7y1=line6y1,line7x2=line2x2,line7y2=line2y2;	//Line 7
-	
-	public void init() {
-
-//		pixelMovement[0] = 5;
-//		pixelMovement[1] = 7;
-//		pixelMovement[2] = 9;
-//		pixelMovement[3] = 11;
-//		
-//		cx[0]=250;cy[0]=250;   	//Circle 1 params
-//		cx[1]=250;cy[1]=350;   	//Circle 2 params
-//		cx[2]=750;cy[2]=250;	//Circle 3 params 
-//		cx[3]=750;cy[3]=350;	//Circle 4 params
-//		
-//		flag[0]=1;
-//		flag[1]=1;
-//		flag[2]=5;
-//		flag[3]=5;
-//		
-//		circleOnBridge[0]=0;
-//		circleOnBridge[1]=0;
-//		circleOnBridge[2]=0;
-//		circleOnBridge[3]=0;
-		
-
-	}
 	
 	JFrame frame;
 
@@ -132,7 +92,6 @@ public class GUI {
 	 * Create the application.
 	 */
 	public GUI() {
-		//init();
 		initialize();
 	}
 
@@ -156,26 +115,43 @@ public class GUI {
 		Control.setBounds(0, 465, 1342, 189);
 		frame.getContentPane().add(Control);
 		
-		JLabel Pink_L = new JLabel("Pink");
-		Pink_L.setBounds(230, 22, 34, 23);
-		Pink_L.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel Blue_L = new JLabel("    Blue");
+		Blue_L.setBounds(215, 22, 62, 23);
+		Blue_L.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JSlider Pink_slider = new JSlider();
-		Pink_slider.setPaintTicks(true);
-		Pink_slider.setMajorTickSpacing(5);
-		Pink_slider.setMinorTickSpacing(1);
-		Pink_slider.setMinimum(5);
-		Pink_slider.setMaximum(20);
-		Pink_slider.setBounds(463, 19, 250, 26);
+		JSlider Blue_slider = new JSlider();
+		Blue_slider.setValue(5);
+		Blue_slider.setPaintTicks(true);
+		Blue_slider.setMajorTickSpacing(5);
+		Blue_slider.setMinorTickSpacing(1);
+		Blue_slider.setMinimum(5);
+		Blue_slider.setMaximum(20);
+		Blue_slider.setBounds(463, 19, 250, 26);
+		
+		Blue_slider.addChangeListener(new ChangeListener() {
+			
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				// TODO Auto-generated method stub
+				JSlider source = (JSlider)e.getSource();
+//				System.out.println("The Value of Blue has change to "+ source.getValue());
+				pixelMovement1=source.getValue();
+			}
+		});
 		
 		JButton ChangeMode_btn = new JButton("Change Mode");
+		ChangeMode_btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		ChangeMode_btn.setBounds(1009, 38, 206, 132);
 		
-		JLabel Black_L = new JLabel("Black");
-		Black_L.setBounds(230, 56, 43, 23);
+		JLabel Black_L = new JLabel("    Black");
+		Black_L.setBounds(195, 59, 108, 23);
 		Black_L.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JSlider Black_slider = new JSlider();
+		Black_slider.setValue(5);
 		Black_slider.setMinorTickSpacing(1);
 		Black_slider.setMinimum(5);
 		Black_slider.setMajorTickSpacing(5);
@@ -183,43 +159,77 @@ public class GUI {
 		Black_slider.setPaintTicks(true);
 		Black_slider.setBounds(463, 56, 250, 26);
 		
-		JLabel Purple_L = new JLabel("Purple");
-		Purple_L.setBounds(230, 94, 53, 23);
-		Purple_L.setHorizontalAlignment(SwingConstants.CENTER);
+		Black_slider.addChangeListener(new ChangeListener() {
+			
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				// TODO Auto-generated method stub
+				JSlider source = (JSlider)e.getSource();
+//				System.out.println("The value of Black has change to "+ source.getValue());
+				pixelMovement2=source.getValue();
+			}
+		});
 		
-		JSlider Purple_slider = new JSlider();
-		Purple_slider.setMinorTickSpacing(1);
-		Purple_slider.setMinimum(5);
-		Purple_slider.setMajorTickSpacing(5);
-		Purple_slider.setMaximum(20);
-		Purple_slider.setPaintTicks(true);
-		Purple_slider.setBounds(463, 91, 250, 26);
+		JLabel Pink_L = new JLabel("Pink");
+		Pink_L.setBounds(221, 94, 62, 23);
+		Pink_L.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JLabel Orange_L = new JLabel("Orange");
-		Orange_L.setBounds(230, 128, 62, 23);
-		Orange_L.setHorizontalAlignment(SwingConstants.CENTER);
+		JSlider Pink_slider = new JSlider();
+		Pink_slider.setValue(5);
+		Pink_slider.setMinorTickSpacing(1);
+		Pink_slider.setMinimum(5);
+		Pink_slider.setMajorTickSpacing(5);
+		Pink_slider.setMaximum(20);
+		Pink_slider.setPaintTicks(true);
+		Pink_slider.setBounds(463, 91, 250, 26);
+		Pink_slider.addChangeListener(new ChangeListener() {
+			
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				// TODO Auto-generated method stub
+				JSlider source = (JSlider)e.getSource();
+//				System.out.println("The Value of Pink has change to "+ source.getValue());
+				pixelMovement3=source.getValue();
+			}
+		});
 		
-		JSlider Orange_slider = new JSlider();
-		Orange_slider.setMinorTickSpacing(1);
-		Orange_slider.setMinimum(5);
-		Orange_slider.setMajorTickSpacing(5);
-		Orange_slider.setMaximum(20);
-		Orange_slider.setPaintTicks(true);
-		Orange_slider.setBounds(463, 128, 250, 26);
+		JLabel Yellow_L = new JLabel("Yellow");
+		Yellow_L.setBounds(215, 128, 88, 23);
+		Yellow_L.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		JSlider Yellow_slider = new JSlider();
+		Yellow_slider.setValue(5);
+		Yellow_slider.setMinorTickSpacing(1);
+		Yellow_slider.setMinimum(5);
+		Yellow_slider.setMajorTickSpacing(5);
+		Yellow_slider.setMaximum(20);
+		Yellow_slider.setPaintTicks(true);
+		Yellow_slider.setBounds(463, 128, 250, 26);
+		
+		Yellow_slider.addChangeListener(new ChangeListener() {
+			
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				// TODO Auto-generated method stub
+				JSlider source = (JSlider)e.getSource();
+//				System.out.println("The Value of Yellow has change to "+ source.getValue());
+				pixelMovement4=source.getValue();
+			}
+		});
 		
 		Control.setLayout(null);
-		Control.add(Pink_L);
+		Control.add(Blue_L);
 		Control.add(Black_L);
-		Control.add(Orange_L);
-		Control.add(Purple_L);
+		Control.add(Yellow_L);
+		Control.add(Pink_L);
+		Control.add(Blue_slider);
+		Control.add(Yellow_slider);
 		Control.add(Pink_slider);
-		Control.add(Orange_slider);
-		Control.add(Purple_slider);
 		Control.add(Black_slider);
 		Control.add(ChangeMode_btn);
 		
-//		Primary p = new Primary(this);
-//		p.start();
-		Secondary s = new Secondary(this);
+		Primary p = new Primary(this);
+		
+//		Secondary s = new Secondary(this);
 	}
 }
