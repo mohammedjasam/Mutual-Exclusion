@@ -113,7 +113,7 @@ public class GUI {
 	DrawingPanel drawingPanel;
 	
 	private void initialize() {
-		frame = new JFrame();
+		frame = new JFrame( );
 		frame.setBounds(0, 0, 1366, 718);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
